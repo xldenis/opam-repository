@@ -1,0 +1,43 @@
+opam-version: "2.0"
+maintainer: "Xavier Denis <xldenis@gmail.com>"
+authors: "Xavier Denis <xldenis@gmail.com>"
+synopsis: "An LSP server for Why3"
+description: """
+The whycode opam package is the backend component of the whycode extension for VSCode which allows viewing and editing Why3 and Creusot proofs from VSCode.
+"""
+license: "LGPL-2.1-or-later"
+homepage: "https://github.com/xldenis/whycode"
+bug-reports: "https://github.com/xldenis/whycode/issues"
+depends: [
+  "dune" {>= "3.0"}
+  "odoc" {with-doc}
+  "why3"
+  "lsp" { >= "1.11.0" }
+  "linol"
+  "linol-lwt"
+  "uri"
+  "bheap"
+  "ppx_deriving_yojson"
+  "ocamlgraph"
+]
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+url {
+  src: "https://github.com/xldenis/whycode/archive/refs/tags/0.0.2.tar.gz"
+  checksum: [
+    "md5=e174b2e28483200d6abc8c090db41a92"
+    "sha512=673905d06246278c1059fe30ff56cabbe0ba2c940b1bf922835262e30f75c46e1306fc96898b9696c66daad1e553a9f73b3de9331ae30af6924ce8f9b06aa424"
+  ]
+}
